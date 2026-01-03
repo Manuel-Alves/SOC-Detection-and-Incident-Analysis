@@ -21,8 +21,6 @@ The operational flow followed in this project is:
 5. Decision: continue investigation or escalate  
 6. Documentation and handover  
 
-This mirrors a **Tier 1 / Tier 2 SOC workflow**.
-
 ---
 
 ## 3. Core SOC Investigation Questions
@@ -143,8 +141,6 @@ Escalation should include:
 - Evidence is preserved
 - Communication follows need-to-know principles
 
-This aligns with audit and compliance expectations in regulated environments.
-
 ---
 
 ## 8. Lessons Learned
@@ -171,4 +167,137 @@ Planned next steps:
 
 ## 10. Final Note
 
-This project emphasizes **process, judgment, and operational discipline**, which are core competencies for SOC roles, particularly in high-risk and regulated sectors such as banking.
+This project emphasizes **process, judgment, and operational discipline**, which are core competencies for SOC roles, particularly in high-risk and regulated sectors such as banking. With this project I showcase these competencies.
+
+---
+
+## 11. Lab Architecture Overview
+
+This section describes the planned technical environment that will be used to implement the SOC investigation framework defined above.
+
+The objective of the lab is to simulate a realistic SOC workflow:
+
+**Attack → Telemetry → Detection → Investigation → Escalation**
+
+The environment is intentionally simple, controlled, and aligned with real SOC operational needs.
+
+---
+
+## 12. Virtual Machine Architecture
+
+The lab is composed of three virtual machines:
+
+| VM | Role | Purpose |
+|----|------|---------|
+| VM 1 | SIEM | Centralized detection, correlation, and investigation |
+| VM 2 | Endpoint | Monitored asset generating security telemetry |
+| VM 3 | Attacker | Controlled source of malicious activity |
+
+---
+
+## 13. VM 1 – SIEM Platform
+
+**Operating System:**
+- Linux (Ubuntu Server 22.04 LTS recommended)
+
+**SIEM Platform:**
+- Wazuh with Elastic Stack
+
+**Responsibilities:**
+- Log ingestion and normalization  
+- Alert generation and correlation  
+- Dashboard visualization  
+- Incident investigation support  
+
+**Log Sources:**
+- Authentication logs  
+- Process execution logs  
+- Endpoint security events  
+- Network-related events  
+
+---
+
+## 14. VM 2 – Monitored Endpoint
+
+**Operating System:**
+- Windows 10 or Windows Server
+
+**Configuration:**
+- Wazuh agent installed  
+- Enhanced logging enabled (authentication, process creation, PowerShell)  
+- Optional Sysmon integration  
+
+**Role in the Lab:**
+- Simulates an internal workstation or server  
+- Generates both legitimate and malicious activity  
+- Primary target for simulated attacks  
+
+---
+
+## 15. VM 3 – Attacker System
+
+**Operating System:**
+- Kali Linux
+
+**Purpose:**
+- Simulate realistic attack techniques  
+- Generate security-relevant events for detection and investigation  
+
+**Planned Activities:**
+- Authentication brute force and password spraying  
+- Suspicious script execution  
+- Malware behavior simulation (controlled)  
+
+> Note: The attacker VM is used strictly for defensive testing and detection validation.
+
+---
+
+## 16. Network Topology
+
+All virtual machines operate within an isolated internal network:
+
+- Private / host-only network  
+- No exposure to external systems  
+- Optional NAT interface for updates  
+
+This ensures safe testing while maintaining realistic traffic flows.
+
+---
+
+## 17. Planned Detection Scenarios
+
+The following scenarios will be implemented incrementally:
+
+1. Suspicious authentication activity  
+2. Unauthorized script execution  
+3. Endpoint malware behavior simulation  
+4. Multi-stage incident timeline  
+
+Each scenario will result in alerts, investigation notes, and escalation decisions.
+
+---
+
+## 18. Documentation and Outputs
+
+For each scenario, the following artifacts will be produced:
+
+- Alert description  
+- Logs reviewed  
+- Investigation steps  
+- Risk assessment  
+- Escalation decision  
+- Lessons learned  
+
+---
+
+## 19. Implementation Roadmap
+
+Planned implementation steps:
+
+1. Deploy virtual machines  
+2. Install and configure the SIEM platform  
+3. Connect endpoint telemetry  
+4. Validate baseline (benign) activity  
+5. Execute controlled attack simulations  
+
+This phased approach mirrors real SOC onboarding and tuning processes.
